@@ -21,7 +21,7 @@ struct Login: View {
 
                 Task {
                     do {
-                        let jobs = try await repository.getJobs()
+                        let jobs = try await repository.getAssignedJobs()
 
                         print(jobs)
 

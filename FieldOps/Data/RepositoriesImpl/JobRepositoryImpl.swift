@@ -8,16 +8,19 @@
 import Foundation
 import Supabase
 
-final class JobRepositoryImpl {
+final class JobRepositoryImpl: JobRepository {
+    
     private let client = SupabaseManager.shared.client
     
-    func getJobs() async throws -> [JobDTO] {
+    func getAssignedJobs() async throws -> [Job] {
         
-       try await client
+        let jobs: [JobDTO] = try await client
             .from("jobs")
             .select()
             .order("scheduled_at")
             .execute()
             .value
+        return jobs.map { $0.toDomain() }
     }
+  
 }
