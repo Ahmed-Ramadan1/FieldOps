@@ -27,6 +27,16 @@ extension Job {
         case medium
         case high
         case urgent
+        
+        var displayName: String {
+            switch self {
+            case .low: "Low"
+            case .medium: "Medium"
+            case .high: "High"
+            case .urgent: "Urgent"
+            }
+        }
+        
     }
     
     enum Status {
@@ -36,5 +46,16 @@ extension Job {
         case inProgress
         case completed
         case cancelled
+        
+        var diplayName: String {
+            switch self {
+            case .assigned: "Assigned"
+            case .onTheWay: "On the way"
+            case .arrived: "Arrived"
+            case .inProgress: "In progress"
+            case .completed: "Completed"
+            case .cancelled: "Cancelled"
+            }
+        }
     }
 }
