@@ -11,7 +11,10 @@ import SwiftUI
 struct FieldOpsApp: App {
     var body: some Scene {
         WindowGroup {
-            Login()
+            let jpp : JobRepository = JobRepositoryImpl()
+            HomeView(viewModel: HomeViewModel(getAssignedJobsUseCase: GetAssignedJobsUseCase(repository: jpp)))
+            //Login()
+                
         }
     }
 }

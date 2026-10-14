@@ -19,9 +19,22 @@
 		E2DF2FF03074F5D300E097E2 /* FieldOps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FieldOps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		E2A07EFB307E6163008EEA34 /* Exceptions for "FieldOps" folder in "FieldOps" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = E2DF2FEF3074F5D300E097E2 /* FieldOps */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		E2DF2FF23074F5D300E097E2 /* FieldOps */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				E2A07EFB307E6163008EEA34 /* Exceptions for "FieldOps" folder in "FieldOps" target */,
+			);
 			path = FieldOps;
 			sourceTree = "<group>";
 		};
