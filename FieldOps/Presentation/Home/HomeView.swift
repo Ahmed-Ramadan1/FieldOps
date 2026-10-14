@@ -160,6 +160,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    let jpp : JobRepository = JobRepositoryImpl()
-    HomeView(viewModel: HomeViewModel(getAssignedJobsUseCase: GetAssignedJobsUseCase(repository: jpp)))
+    HomeView(viewModel: AppDependencies.shared.makeHomeViewModel())
 }

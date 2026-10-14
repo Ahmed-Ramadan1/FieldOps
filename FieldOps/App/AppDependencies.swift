@@ -9,7 +9,17 @@ import Foundation
 
 final class AppDependencies {
     
+    static let shared = AppDependencies()
     
+    private let jobRepo: JobRepository
+    
+    init() {
+        jobRepo = JobRepositoryImpl()
+    }
+    
+    func makeHomeViewModel() -> HomeViewModel {
+        HomeViewModel(getAssignedJobsUseCase: GetAssignedJobsUseCase(repository: jobRepo))
+    }
 }
 
 
