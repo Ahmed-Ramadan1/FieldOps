@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CheckAuthenticationUseCase {
+struct CheckAuthUseCase {
     
     private let repository: AuthRepository
     
