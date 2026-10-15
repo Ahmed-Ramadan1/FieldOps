@@ -11,7 +11,7 @@ import Combine
 @MainActor
 final class LoginViewModel: ObservableObject {
     @Published var errorMessage: String?
-    private let authRepository = AuthRepository()
+    private let authRepository = AuthRepositoryImpl()
     
     func login(email: String, password: String) async {
         

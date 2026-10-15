@@ -9,7 +9,7 @@ import Foundation
 import Supabase
 
 
-final class AuthRepository {
+final class AuthRepositoryImpl {
     
     private let client = SupabaseManager.shared.client
     
