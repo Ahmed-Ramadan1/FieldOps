@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Login: View {
+struct LoginView: View {
 
     @StateObject private var viewModel: LoginViewModel
     @State private var isPasswordVisible = false
@@ -32,8 +32,8 @@ struct Login: View {
                     .font(.system(size: 34, weight: .semibold))
                     .foregroundStyle(.white)
                     .frame(width: 76, height: 76)
-                    //.background(Color.orange)
-                    .background(Color("SecText"))
+                    .background(Color.orange)
+                    //.background(Color("SecText"))
                     .clipShape(RoundedRectangle(cornerRadius: 22))
 
                 Text("FieldOps")
@@ -158,8 +158,8 @@ struct Login: View {
                     .foregroundStyle(.white)
                     .frame(maxWidth: .infinity)
                     .frame(height: 54)
-                    //.background(Color.orange)
-                    .background(Color("SecText"))
+                    .background(Color.orange)
+//                    .background(Color("SecText"))
                     .clipShape(RoundedRectangle(cornerRadius: 16))
                 }
                 .disabled(viewModel.isLoading)
@@ -183,7 +183,7 @@ struct Login: View {
 }
 
 #Preview {
-    Login(viewModel: AppDependencies.shared.makeLoginViewModel()) {
+    LoginView(viewModel: AppDependencies.shared.makeLoginViewModel()) {
         
     }
 }

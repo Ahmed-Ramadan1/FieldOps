@@ -30,9 +30,4 @@ final class AuthRepositoryImpl: AuthRepository {
         }
     }
     
-    
-    // fake
-    func login(email: String, password: String) async throws {
-      try await client.auth.signIn(email: email, password: password)
-    }
 }

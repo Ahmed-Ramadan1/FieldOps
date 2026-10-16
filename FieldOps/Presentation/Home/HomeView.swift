@@ -87,6 +87,13 @@ struct HomeView: View {
                 .cornerRadius(18)
                 
                 
+                ///8--===================
+                .onTapGesture {
+                    Task {
+                      try await AppDependencies.shared.makeSignOutUseCase().execute()
+                    }
+                }
+                
                 // today's jobs
                 HStack(alignment: .center) {
                     Text("Today’s jobs")
