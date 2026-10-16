@@ -10,18 +10,62 @@ import Combine
 
 @MainActor
 final class LoginViewModel: ObservableObject {
-    @Published var errorMessage: String?
-    private let authRepository = AuthRepositoryImpl()
     
-    func login(email: String, password: String) async {
+    @Published var email: String = ""
+    @Published var password: String = ""
+    
+    @Published private(set) var isLoading: Bool = false
+    @Published private(set) var errorMessage: String?
+    @Published private(set) var loginSucceeded = false
+    
+    private let signInUseCase: SignInUseCase
+    
+    init(signInUseCase: SignInUseCase) {
+        self.signInUseCase = signInUseCase
+    }
+    
+    func singIn() async {
+        errorMessage = nil
+        loginSucceeded = false
+        
+        let trimmedEmail = email.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        guard !trimmedEmail.isEmpty else {
+            errorMessage = "Please enter your email."
+            return
+        }
+        guard trimmedEmail.contains("@"),
+              trimmedEmail.contains(".") else {
+            errorMessage = "Please enter a valid email address."
+            return
+        }
+        guard !password.isEmpty else {
+            errorMessage = "Please enter your password."
+            return
+        }
+        
+        isLoading = true
+        defer { isLoading = false }
         
         do {
-           try await authRepository.login(email: email, password: password)
-            print("LogIN Success")
+            try await signInUseCase.execute(email: trimmedEmail, password: password)
+            loginSucceeded = true
+            print("login success")
         } catch {
-            errorMessage = error.localizedDescription
-            print("\(errorMessage ?? "no message") helllllllp")
+            errorMessage = "Unable to sign in. Please check your credentials and try again."
         }
+        
     }
+    
+//    func login(email: String, password: String) async {
+//        
+//        do {
+//           try await authRepository.login(email: email, password: password)
+//            print("LogIN Success")
+//        } catch {
+//            errorMessage = error.localizedDescription
+//            print("\(errorMessage ?? "no message") helllllllp")
+//        }
+//    }
     
 }
