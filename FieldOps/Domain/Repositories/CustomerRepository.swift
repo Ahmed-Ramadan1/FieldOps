@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+protocol CustomerRepository {
+    
+    func getCustomer(by id: UUID) async throws -> Customer?
+}

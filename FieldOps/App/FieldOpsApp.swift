@@ -64,4 +64,12 @@ struct FieldOpsApp: App {
 
  */
 
-
+/**
+ Primary: orange #F47735
+ Pressed / deep orange: #E65F24
+ Light orange: #FFF0E6
+ Background: warm off-white #F7F6F2
+ Primary text: charcoal #20252B
+ Typography: SF Pro, using SwiftUI's system fonts
+ Components: rounded cards, subtle borders, comfortable spacing, and clear status badges
+ */
