@@ -6,7 +6,6 @@
     <td><img src="<img width="586" height="1206" alt="image" src="https://github.com/user-attachments/assets/75461ba2-7086-483c-aafa-9bff41314ad4" />" width="200" /></td>
     <td><img src="<img width="584" height="1196" alt="image" src="https://github.com/user-attachments/assets/fa5d3b75-fd7c-4081-a272-cc739144069e" />" width="200" /></td>
     <td><img src="<img width="1206" height="2622" alt="Simulator Screenshot - iPhone 17 - 2026-10-23 at 06 11 30" src="https://github.com/user-attachments/assets/881cfd57-7d85-452a-b6de-36bdc0472e74" />" width="200" /></td>
-    <td><img src="" width="200" /></td>
 
 
   </tr>
