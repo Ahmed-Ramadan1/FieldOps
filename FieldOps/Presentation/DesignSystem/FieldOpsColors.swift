@@ -57,3 +57,5 @@ enum FieldOpsColors {
         blue: 117 / 255.0
     )
 }
+
+// FieldOps design system: orange #F47735, light orange #FFF0E6, warm background #F7F6F2, charcoal text, and rounded cards.

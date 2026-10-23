@@ -47,7 +47,7 @@ extension Job {
         case completed
         case cancelled
         
-        var diplayName: String {
+        var displayName: String {
             switch self {
             case .assigned: "Assigned"
             case .onTheWay: "On the way"

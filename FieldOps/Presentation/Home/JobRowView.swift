@@ -17,12 +17,12 @@ struct JobRowView: View {
                     
                     HStack(alignment: .center,spacing: 7) {
                       Image(systemName: "bolt")
-                            .foregroundStyle(Color("SecText"))
+                            .foregroundStyle(FieldOpsColors.primary)
                             .frame(width: 15, height: 15)
                         Text(job.title)
                             .font(.system(size: 17))
                             .fontWeight(.semibold)
-                            .foregroundStyle(Color("MainText"))
+                            .foregroundStyle(FieldOpsColors.textPrimary)
                             .lineLimit(1)
                     }
                         .padding(0)
@@ -41,7 +41,7 @@ struct JobRowView: View {
                 if let description = job.description {
                     Text(description)
                         .font(.subheadline)
-                        .foregroundStyle(Color("SmallText"))
+                        .foregroundStyle(FieldOpsColors.textSecondary)
                         .lineLimit(2)
 
                 }
@@ -49,7 +49,7 @@ struct JobRowView: View {
                 HStack(alignment: .center, spacing: 7) {
                     HStack(alignment: .center,spacing: 8) {
                       Image(systemName: "clock")
-                            .foregroundStyle(Color("SmallText"))
+                            .foregroundStyle(FieldOpsColors.primary)
                             .frame(width: 10, height: 0)
                         
                         Text(job.scheduledAt.formatted(
@@ -57,19 +57,19 @@ struct JobRowView: View {
                             time: .shortened))
                             .font(.system(size: 13))
                            // .fontWeight(.semibold)
-                            .foregroundStyle(Color("MainText"))
+                            .foregroundStyle(FieldOpsColors.textPrimary)
                     }
                         .padding(0)
                    
                     
                     Spacer()
-                    Text(job.status.diplayName)
+                    Text(job.status.displayName)
                         .font(.system(size: 10))
                         .fontWeight(.semibold)
-                        .foregroundStyle(Color("SecText"))
+                        .foregroundStyle(FieldOpsColors.deepOrange)
                         .padding(.horizontal, 9)
                         .padding(.vertical, 5)
-                        .background(Color(#colorLiteral(red: 0.8823529412, green: 0.9490196078, blue: 0.9411764706, alpha: 1)))
+                        .background(FieldOpsColors.lightOrange)
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                 }
                 .padding(0)
@@ -82,7 +82,7 @@ struct JobRowView: View {
             .overlay {
                 RoundedRectangle(cornerRadius: 20)
                     .inset(by: 0.5)
-                    .stroke(Color(#colorLiteral(red: 0.8823529412, green: 0.9137254902, blue: 0.9137254902, alpha: 1)), lineWidth: 1)
+                    .stroke(Color(FieldOpsColors.border), lineWidth: 1)
             }
         
     }
@@ -90,9 +90,9 @@ struct JobRowView: View {
     private var priorityColor: Color {
         switch job.priority {
         case .low, .medium:
-            return Color("SecText")
+            return Color(FieldOpsColors.deepOrange)
         case .high:
-            return Color(#colorLiteral(red: 0.6470588235, green: 0.4235294118, blue: 0.0862745098, alpha: 1))
+            return Color(FieldOpsColors.primary)
         case .urgent:
             return .red
         }

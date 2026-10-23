@@ -13,10 +13,13 @@ final class AppDependencies {
     
     private let jobRepo: JobRepository
     private let authRepository: AuthRepository
+    private let customerRepo: CustomerRepository
     
     init() {
         jobRepo = JobRepositoryImpl()
         authRepository = AuthRepositoryImpl()
+        customerRepo = CustomerRepositoryImpl()
+        
     }
     
     func makeHomeViewModel() -> HomeViewModel {
@@ -33,6 +36,14 @@ final class AppDependencies {
 
     func makeCheckAuthenticationUseCase() -> CheckAuthUseCase {
         CheckAuthUseCase(repository: authRepository)
+    }
+    
+    func makeGetCustomerByIdUseCase() -> GetCustomerByIdUseCase {
+        GetCustomerByIdUseCase(repository: customerRepo)
+    }
+    
+    func makeJobDetailsViewModel(job: Job) -> JobDetailsViewModel {
+        JobDetailsViewModel(job: job, getCustomerByIdUseCase: makeGetCustomerByIdUseCase())
     }
 }
 

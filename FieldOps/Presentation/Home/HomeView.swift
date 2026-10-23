@@ -18,7 +18,7 @@ struct HomeView: View {
         NavigationStack {
             ZStack {
                 //backgruond color
-                Color("BackgroundApp")
+                Color(FieldOpsColors.background)
                     .ignoresSafeArea()
                 // all content
                 VStack(alignment: .leading)  {
@@ -26,29 +26,29 @@ struct HomeView: View {
                     VStack(alignment: .leading, spacing: 6) {
                         Text("Good morning, Ahmed")
                             .font(.system(size: 12))
-                            .foregroundStyle(Color("SmallText"))
+                            .foregroundStyle(FieldOpsColors.textSecondary)
                         
                         Text("Let’s get to work.")
                             .font(.system(size: 26))
                             .fontWeight(.semibold)
-                            .foregroundStyle(Color("MainText"))
+                            .foregroundStyle(FieldOpsColors.textPrimary)
                     }
                     .padding(0)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     // today's date
                     HStack(alignment: .center,spacing: 8) {
                         Image(systemName: "calendar")
-                            .foregroundStyle(Color("SecText"))
+                            .foregroundStyle(FieldOpsColors.primary)
                             .font(.system(size: 18))
                             .frame(width: 18, height: 18)
                         Text(Date(),style: .date)
                             .font(.system(size: 14))
                             .fontWeight(.semibold)
-                            .foregroundStyle(Color("MainText"))
+                            .foregroundStyle(FieldOpsColors.textPrimary)
                     }
                     .padding(0)
-                    // progress
                     
+                    // progress
                     VStack(alignment: .leading, spacing: 12) {
                         HStack(alignment: .center) {
                             Text("\(viewModel.jobs.count) jobs today")
@@ -63,7 +63,7 @@ struct HomeView: View {
                                 Text("1 completed")
                                     .font(.system(size: 12))
                             }
-                            .foregroundColor(Color(#colorLiteral(red: 0.737254902, green: 0.9137254902, blue: 0.8549019608, alpha: 1)))
+                            .foregroundColor(FieldOpsColors.lightOrange)
                             .padding(0)
                         }
                         .padding(0)
@@ -84,7 +84,7 @@ struct HomeView: View {
                     .padding(.horizontal, 16)
                     .padding(.vertical, 14)
                     .frame(maxWidth: .infinity, minHeight: 72, maxHeight: 72, alignment: .topLeading)
-                    .background(Color(red: 0.06, green: 0.24, blue: 0.27))
+                    .background(FieldOpsColors.primary)
                     .cornerRadius(18)
                     
                     
@@ -100,11 +100,11 @@ struct HomeView: View {
                         Text("Today’s jobs")
                             .font(.system(size: 17))
                             .fontWeight(.semibold)
-                            .foregroundStyle(Color("MainText"))
+                            .foregroundStyle(FieldOpsColors.textPrimary)
                         Spacer()
                         Text("\(viewModel.jobs.count) remaining")
                             .font(.system(size: 12))
-                            .foregroundStyle(Color("SmallText"))
+                            .foregroundStyle(FieldOpsColors.textSecondary)
                     }
                     .padding(0)
                     .frame(maxWidth: .infinity, minHeight: 28, maxHeight: 28, alignment: .center)
@@ -114,8 +114,12 @@ struct HomeView: View {
                         
                         
                         if viewModel.isLoading {
-                            ProgressView("Loading jobs...")
-                                .background(Color("BackgroundApp"))
+                            VStack {
+                                ProgressView("Loading jobs...")
+                                    .background(FieldOpsColors.background)
+                            }
+                            .frame(maxWidth: .infinity,alignment: .center)
+                            Spacer()
                         } else if let error = viewModel.errorMessage {
                             VStack(spacing: 12) {
                                 Text(error)
@@ -130,16 +134,20 @@ struct HomeView: View {
                             .padding()
                         } else if viewModel.jobs.isEmpty {
                             ContentUnavailableView("No Jobs Assigned", systemImage: "wrench.and.screwdriver", description: Text("Your assigned maintenance jobs will appear here."))
-                                .foregroundStyle(Color("MainText"))
+                                .foregroundStyle(FieldOpsColors.primary)
                         } else {
                             List(viewModel.jobs) { job in
                                 
-                                NavigationLink {
-                                    JobDetailsView(job: job)
-                                } label: {
+                                ZStack {
                                     JobRowView(job: job)
+                                    NavigationLink {
+                                        JobDetailsView(viewModel: AppDependencies.shared.makeJobDetailsViewModel(job: job))
+                                    } label: {
+                                        EmptyView()
+                                    }
+                                    .opacity(0)
                                 }
-//                                .buttonStyle(.plain)
+                                .buttonStyle(PlainButtonStyle())
                                 .padding(.vertical, 6)
                                 .listRowBackground(Color.clear)
                                 .listRowSeparator(.hidden)
