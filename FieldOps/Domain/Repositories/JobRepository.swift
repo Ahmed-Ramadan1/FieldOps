@@ -10,4 +10,6 @@ import Foundation
 protocol JobRepository {
     
     func getAssignedJobs() async throws -> [Job]
+    
+    func updateStatus(jobId: UUID, to status: Job.Status) async throws -> Job
 }

@@ -116,7 +116,7 @@ struct HomeView: View {
                         if viewModel.isLoading {
                             VStack {
                                 ProgressView("Loading jobs...")
-                                    .background(FieldOpsColors.background)
+//                                    .tint(FieldOpsColors.primary)
                             }
                             .frame(maxWidth: .infinity,alignment: .center)
                             Spacer()

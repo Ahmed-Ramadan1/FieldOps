@@ -35,7 +35,7 @@ final class HomeViewModel: ObservableObject {
         }
         
         do {
-            //jobs = try await getAssignedJobsUseCase.execute()
+            jobs = try await getAssignedJobsUseCase.execute()
         } catch is CancellationError {
             
         } catch {
