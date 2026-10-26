@@ -146,7 +146,7 @@ struct OnboardingView: View {
             .padding(.bottom, 24)
         }
         .padding(.horizontal, 24)
-        .background(Color(.systemGroupedBackground))
+        .background(FieldOpsColors.background)
     }
 }
 

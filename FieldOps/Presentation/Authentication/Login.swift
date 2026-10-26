@@ -74,7 +74,7 @@ struct LoginView: View {
                         .autocorrectionDisabled()
                     }
                     .padding(16)
-                    .background(Color(.secondarySystemBackground))
+                    .background(FieldOpsColors.background)
                     .clipShape(RoundedRectangle(cornerRadius: 14))
                 }
 
@@ -120,7 +120,7 @@ struct LoginView: View {
                         )
                     }
                     .padding(16)
-                    .background(Color(.secondarySystemBackground))
+                    .background(FieldOpsColors.background)
                     .clipShape(RoundedRectangle(cornerRadius: 14))
                 }
 
@@ -178,7 +178,7 @@ struct LoginView: View {
                 .padding(.bottom, 16)
         }
         .padding(.horizontal, 20)
-        .background(Color(uiColor: .systemGroupedBackground))
+        .background(FieldOpsColors.background)
     }
 }
 
