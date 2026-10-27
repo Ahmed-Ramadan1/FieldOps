@@ -42,8 +42,12 @@ final class AppDependencies {
         GetCustomerByIdUseCase(repository: customerRepo)
     }
     
+    func makeUpdateJobStatusUseCase() -> UpdateJobStatusUseCase {
+        UpdateJobStatusUseCase(repository: jobRepo)
+    }
+    
     func makeJobDetailsViewModel(job: Job) -> JobDetailsViewModel {
-        JobDetailsViewModel(job: job, getCustomerByIdUseCase: makeGetCustomerByIdUseCase())
+        JobDetailsViewModel(job: job, getCustomerByIdUseCase: makeGetCustomerByIdUseCase(), updateJobStatusUseCase: makeUpdateJobStatusUseCase())
     }
 }
 

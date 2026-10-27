@@ -23,8 +23,10 @@ struct JobDetailsView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
                 jobHeader
+                
                 scheduleCard
                 customerSection
+                statusUpdateSection
             }
             .padding(20)
             .padding(.bottom, 20)
@@ -133,6 +135,57 @@ struct JobDetailsView: View {
         }
     }
 
+    // MARK: - Update Job'Status
+    
+    private var statusUpdateSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Update Job Status")
+                .font(.headline)
+                .foregroundStyle(FieldOpsColors.textPrimary)
+
+            if let buttonTitle = viewModel.nextStatusButtonTitle {
+                Button {
+                    Task {
+                        await viewModel.updateToNextStatus()
+                    }
+                } label: {
+                    HStack {
+                        Spacer()
+
+                        if viewModel.isUpdatingStatus {
+                            ProgressView()
+                                .tint(.white)
+                        } else {
+                            Text(buttonTitle)
+                                .fontWeight(.semibold)
+                        }
+
+                        Spacer()
+                    }
+                    .padding()
+                    .foregroundStyle(.white)
+                    .background(FieldOpsColors.primary)
+                    .clipShape(RoundedRectangle(cornerRadius: 14))
+                }
+                .disabled(viewModel.isUpdatingStatus)
+            } else {
+                Text("This job has no further status updates.")
+                    .font(.subheadline)
+                    .foregroundStyle(FieldOpsColors.textSecondary)
+            }
+
+            if let error = viewModel.statusUpdateError {
+                Text(error)
+                    .font(.footnote)
+                    .foregroundStyle(.red)
+            }
+        }
+        .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(.white)
+        .clipShape(RoundedRectangle(cornerRadius: 18))
+    }
+    
     // MARK: - Schedule
 
     private var scheduleCard: some View {
