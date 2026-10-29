@@ -14,12 +14,13 @@ final class AppDependencies {
     private let jobRepo: JobRepository
     private let authRepository: AuthRepository
     private let customerRepo: CustomerRepository
+    private let workRepo: WorkReportRepository
     
     init() {
         jobRepo = JobRepositoryImpl()
         authRepository = AuthRepositoryImpl()
         customerRepo = CustomerRepositoryImpl()
-        
+        workRepo = WorkReportRepositoryImpl()
     }
     
     func makeHomeViewModel() -> HomeViewModel {
@@ -48,6 +49,10 @@ final class AppDependencies {
     
     func makeJobDetailsViewModel(job: Job) -> JobDetailsViewModel {
         JobDetailsViewModel(job: job, getCustomerByIdUseCase: makeGetCustomerByIdUseCase(), updateJobStatusUseCase: makeUpdateJobStatusUseCase())
+    }
+    
+    func makeSubmitWorkReportUseCase() -> SubmitWorkReportUseCase {
+        SubmitWorkReportUseCase(repository: workRepo)
     }
 }
 
