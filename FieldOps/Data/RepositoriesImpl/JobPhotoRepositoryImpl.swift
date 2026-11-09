@@ -45,8 +45,7 @@ final class JobPhotoRepositoryImpl: JobPhotoRepository {
                 .value
             return try createdPhoto.toDomain()
         } catch {
-            // Avoid leaving an orphaned Storage object if metadata
-            // insertion fails.
+            // Avoid leaving an orphaned Storage object if metadata insertion fails.
             _ = try? await client.storage
                 .from("job-photos")
                 .remove(paths: [storagePath])
