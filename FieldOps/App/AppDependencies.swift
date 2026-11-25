@@ -16,6 +16,7 @@ final class AppDependencies {
     private let customerRepo: CustomerRepository
     private let workRepo: WorkReportRepository
     private let jobPhotoRepository: JobPhotoRepository
+    
     init() {
         jobRepo = JobRepositoryImpl()
         authRepository = AuthRepositoryImpl()
@@ -58,6 +59,10 @@ final class AppDependencies {
     
     func makeUploadJobPhotoUseCase() -> UploadJobPhotoUseCase {
         UploadJobPhotoUseCase(repository: jobPhotoRepository)
+    }
+    
+    func makeWorkReportViewModel(job: Job) -> WorkReportViewModel {
+        WorkReportViewModel(job: job, submitWorkReportUseCase: makeSubmitWorkReportUseCase(), uploadJobPhotoUseCase: makeUploadJobPhotoUseCase())
     }
 }
 
